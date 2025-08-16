@@ -1,0 +1,63 @@
+import argparse
+import re
+from pathlib import Path
+from PIL import Image, ImageOps
+
+
+def parse_index_from_name(path: Path):
+    # take the last number in the stem, e.g. a0447 -> 447
+    m = re.search(r'(\d+)(?!.*\d)', path.stem)
+    return int(m.group(1)) if m else None
+
+
+def rotate_image(img: Image.Image, clockwise: bool) -> Image.Image:
+    # normalize EXIF orientation first
+    img = ImageOps.exif_transpose(img)
+    # PIL positive angles are counterclockwise; use transpose for clean 90 deg steps
+    return img.transpose(Image.ROTATE_270) if clockwise else img.transpose(Image.ROTATE_90)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dir", required=True, help="Folder with images")
+    ap.add_argument("--out-dir", default=None, help="Folder to write results. If omitted, use --inplace.")
+    ap.add_argument("--inplace", action="store_true", help="Overwrite files in place")
+    ap.add_argument("--glob", default="*.JPG;*.JPEG;*.jpg;*.jpeg;*.png", help="Semicolon separated patterns")
+    args = ap.parse_args()
+
+    if not args.inplace and not args.out_dir:
+        raise SystemExit("Choose --inplace or provide --out-dir")
+
+    src_dir = Path(args.dir)
+    out_dir = Path(args.out_dir) if args.out_dir else src_dir
+    if not out_dir.exists():
+        out_dir.mkdir(parents=True, exist_ok=True)
+
+    patterns = [p.strip() for p in args.glob.split(";") if p.strip()]
+    files = []
+    for pat in patterns:
+        files.extend(sorted(src_dir.glob(pat)))
+
+    if not files:
+        print(f"No images matched in {src_dir}")
+        return
+
+    for p in files:
+        idx = parse_index_from_name(p)
+        if idx is None:
+            print(f"Skip (no number): {p.name}")
+            continue
+
+        clockwise = (idx % 2 == 1)
+        try:
+            with Image.open(p) as im:
+                rotated = rotate_image(im, clockwise)
+                target = p if args.inplace else out_dir / p.name
+                rotated.save(target, quality=95)
+                print(f"{p.name} -> {'CW' if clockwise else 'CCW'} saved to {target}")
+        except Exception as e:
+            print(f"Failed on {p.name}: {e}")
+
+
+if __name__ == "__main__":
+    main()
