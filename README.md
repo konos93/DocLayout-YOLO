@@ -9,8 +9,8 @@ ___________
 copy odd  images at C:\Users\konos\DocLayout-YOLO\bookscanner\detect_number\1
 copy even images at C:\Users\konos\DocLayout-YOLO\bookscanner\detect_number\2
 
-rename first 1 and 2 dir files like 0001 etc - bulk rename utility for this
+rename first 1 and 2 dir files like 0001 etc - bulk rename utility https://www.bulkrenameutility.co.uk/ 
 
-run rotate_detect python script or shortcut
+run C:\Users\konos\DocLayout-YOLO\bookscanner\detect_number\rotate_detect  (python script or shortcut)
 
-run run_sync python script or shortcut
+run C:\Users\konos\DocLayout-YOLO\bookscanner\detect_number\run_sync (python script or shortcut)
