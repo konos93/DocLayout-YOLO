@@ -14,12 +14,12 @@ rename first 1 and 2 dir files like 0001 etc - bulk rename utility https://www.b
 run C:\Users\konos\DocLayout-YOLO\bookscanner\detect_number\rotate_detect  (python script or shortcut)
 
 run C:\Users\konos\DocLayout-YOLO\bookscanner\detect_number\run_sync (python script or shortcut)
+__________
 
-
-AMD Ryzen 5 2600
-32,0 GB Dual-Channel DDR4 
-ASRock B450 Gaming K4 (AM4)
-NVIDIA GeForce RTX 3060
+- AMD Ryzen 5 2600
+- 32,0 GB Dual-Channel DDR4 
+- ASRock B450 Gaming K4 (AM4)
+- NVIDIA GeForce RTX 3060
 
 |Number of pages| cpu time | gpu time |
 | -------- | ------- | --- |
