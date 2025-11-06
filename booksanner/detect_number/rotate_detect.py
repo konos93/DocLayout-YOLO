@@ -33,7 +33,9 @@ def run_detection(input_dir, output_dir, model_path="../weights/yolov10-doclayou
         '--res-path', full_output_path,  # Use absolute path for output
         '--imgsz', str(imgsz),
         '--conf', str(conf),
-        '--keep-class', 'abandon'  # You can change this as needed
+        '--keep-class', 'abandon',  # You can change this as needed
+         '--batch', '16',
+      
     ]
     print(f"🚀 Running detection on {full_input_path} -> {full_output_path}")
     try:
