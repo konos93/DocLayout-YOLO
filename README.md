@@ -24,6 +24,6 @@ __________
 |Number of pages| cpu time | gpu time |
 | -------- | ------- | --- |
 | 700 | 45 min | 14 min |
-| 300 | 14 min | ? |
+| 300 | 14 min | 5 min |
 
 
