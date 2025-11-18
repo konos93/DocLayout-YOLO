@@ -21,9 +21,9 @@ __________
 - ASRock B450 Gaming K4 (AM4)
 - NVIDIA GeForce RTX 3060
 
-|Number of pages| cpu time | gpu time |
-| -------- | ------- | --- |
-| 700 | 45 min | 14 min |
-| 300 | 14 min | 5 min |
+|Number of pages|  gpu time |
+| -------- |  --- |
+| 700 |  7 min |
+| 300 |  3 min |
 
 
